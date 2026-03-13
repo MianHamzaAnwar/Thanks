@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
   <title>For My Noor Fatima</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -28,6 +28,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -35,19 +36,20 @@
       background: #000;
       color: var(--text-main);
       overflow-x: hidden;
+      min-height: 100vh;
     }
 
     h1, h2, h3 {
       font-family: 'Cinzel', serif;
     }
 
-    /* --- Full Screen Background --- */
+    /* --- Responsive Background --- */
     .fixed-bg {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      height: 100vh;
+      height: 100dvh;
       z-index: -1;
     }
 
@@ -72,8 +74,8 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      min-height: 100vh;
-      padding: 4rem 1rem;
+      width: 100%;
+      padding: 2rem 1rem;
     }
 
     /* --- Glass Cards --- */
@@ -84,9 +86,9 @@
       border: 1px solid var(--glass-border);
       border-radius: 20px;
       box-shadow: 0 8px 32px var(--glass-shadow);
-      padding: 3rem;
+      padding: 2rem;
+      width: calc(100% - 2rem);
       max-width: 800px;
-      width: 100%;
       margin-bottom: 2rem;
       opacity: 0;
       transform: translateY(50px);
@@ -101,39 +103,49 @@
     /* --- Hero --- */
     .hero-glass {
       text-align: center;
-      margin-top: 10vh;
+      margin-top: 5vh;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), transparent);
+      border: none;
+      backdrop-filter: none;
     }
 
     .hero-title {
-      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-size: clamp(2rem, 8vw, 5rem);
       font-weight: 700;
-      margin-bottom: 1rem;
-      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      line-height: 1.1;
       text-shadow: 0 4px 20px rgba(0,0,0,0.5);
     }
 
     .hero-title span {
       display: block;
-      font-size: 0.5em;
+      font-size: 0.6em;
       color: #ccc;
-      letter-spacing: 0.3em;
+      letter-spacing: 0.2em;
       margin-bottom: 0.5rem;
     }
 
     .hero-subtitle {
-      font-size: 1.2rem;
+      font-size: clamp(0.9rem, 2.5vw, 1.2rem);
       color: #ddd;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.05em;
       font-weight: 300;
     }
 
-    /* --- Questions --- */
+    /* --- Responsive Grid for Questions --- */
     .question-container {
       display: grid;
-      gap: 2rem;
-      padding: 2rem 0;
-      width: 100%;
+      gap: 1.5rem;
+      width: calc(100% - 2rem);
       max-width: 900px;
+      margin-bottom: 2rem;
+      grid-template-columns: 1fr; 
+    }
+
+    @media (min-width: 768px) {
+      .question-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     .question-card {
@@ -151,15 +163,15 @@
       z-index: -1;
     }
 
-    .question-card:hover .question-bg {
+    .question-card:hover .question-bg, .question-card:active .question-bg {
       opacity: 1;
     }
 
     .q-text {
       font-family: 'Cinzel', serif;
-      font-size: 1.2rem;
+      font-size: clamp(1rem, 2.5vw, 1.2rem);
       color: var(--gold);
-      margin-bottom: 1rem;
+      margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
       gap: 0.5rem;
@@ -170,11 +182,12 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 30px;
+      min-width: 30px;
       height: 30px;
       border: 1px solid var(--gold);
       border-radius: 50%;
       font-size: 0.9rem;
+      flex-shrink: 0;
     }
 
     .answer-text {
@@ -183,30 +196,30 @@
       opacity: 0;
       color: #fff;
       font-style: italic;
-      line-height: 1.8;
+      line-height: 1.6;
+      font-size: 0.95rem;
       transition: all 0.6s ease;
       border-top: 1px solid transparent;
-      margin-top: 0;
       padding-top: 0;
     }
 
     .question-card.active .answer-text {
-      max-height: 200px;
+      max-height: 500px;
       opacity: 1;
       margin-top: 1rem;
       padding-top: 1rem;
       border-top: 1px solid rgba(255,255,255,0.1);
     }
 
-    /* --- ENHANCED MESSAGE SECTION --- */
+    /* --- Enhanced Message Section --- */
     .message-section-enhanced {
       position: relative;
       text-align: center;
       overflow: hidden;
       border: 1px solid rgba(230, 57, 70, 0.2);
+      margin-bottom: 4rem;
     }
 
-    /* Animated glowing border */
     .message-section-enhanced::before {
       content: '';
       position: absolute;
@@ -227,38 +240,29 @@
 
     .decorative-quote {
       font-family: 'Great Vibes', cursive;
-      font-size: 6rem;
+      font-size: clamp(4rem, 15vw, 8rem);
       color: var(--accent);
       opacity: 0.2;
       position: absolute;
       top: -20px;
-      left: 20px;
+      left: 10px;
       line-height: 1;
       user-select: none;
     }
 
-    .enhanced-text-container {
-      padding: 1rem 0;
-    }
-
     .love-line {
-      font-size: 1.1rem;
-      line-height: 2.2;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
+      line-height: 2;
       color: var(--text-muted);
       margin-bottom: 1.5rem;
-      position: relative;
-      z-index: 2;
     }
 
-    .love-line strong {
-      color: #fff;
-      font-weight: 600;
-    }
+    .love-line strong { color: #fff; font-weight: 600; }
 
     .love-highlight {
       display: block;
       font-family: 'Great Vibes', cursive;
-      font-size: 2.8rem;
+      font-size: clamp(2rem, 6vw, 3rem);
       color: var(--accent);
       margin: 2rem 0;
       text-shadow: 0 0 20px var(--accent-glow);
@@ -274,35 +278,20 @@
     .romantic-btn {
       position: relative;
       display: inline-block;
-      padding: 1.2rem 3rem;
+      padding: 1rem 2rem;
       background: transparent;
       border: 1px solid var(--accent);
       color: #fff;
       font-family: 'Cinzel', serif;
-      font-size: 1.1rem;
+      font-size: clamp(0.9rem, 2vw, 1.1rem);
       letter-spacing: 0.1em;
       cursor: pointer;
       overflow: hidden;
       transition: all 0.5s ease;
       z-index: 5;
+      -webkit-tap-highlight-color: transparent;
     }
 
-    .romantic-btn::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      transition: 0.5s;
-      top: 0;
-    }
-
-    .romantic-btn:hover::before {
-      left: 100%;
-    }
-    
     .romantic-btn:hover {
       background: rgba(230, 57, 70, 0.1);
       box-shadow: 0 0 30px var(--accent-glow);
@@ -315,7 +304,7 @@
       transition: all 0.8s ease;
       display: none;
       background: rgba(0,0,0,0.3);
-      padding: 2rem;
+      padding: 1.5rem;
       border-radius: 10px;
     }
 
@@ -325,16 +314,42 @@
       transform: scale(1);
     }
 
+    .hidden-reveal h3 {
+      font-size: clamp(1.5rem, 4vw, 2rem);
+      font-family: 'Great Vibes', cursive;
+    }
+
+    /* --- UPGRADED PARTICLE BOMB STYLES --- */
+    .particle-bomb {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      /* Added variation in animation */
+      animation: bombExplode var(--duration) cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+      will-change: transform, opacity;
+    }
+
+    @keyframes bombExplode {
+      0% {
+        transform: translate(0, 0) scale(0.5) rotate(0deg);
+        opacity: 1;
+      }
+      50% {
+        opacity: 1;
+      }
+      100% {
+        transform: translate(var(--tx), var(--ty)) scale(1.2) rotate(var(--rot)) ;
+        opacity: 0;
+      }
+    }
+
     /* --- Ambient --- */
-    .floating-element {
+    .glow-orb {
       position: fixed;
       pointer-events: none;
       z-index: 5;
-    }
-
-    .glow-orb {
-      width: 400px;
-      height: 400px;
+      width: 300px;
+      height: 300px;
       background: radial-gradient(circle, var(--accent) 0%, transparent 70%);
       border-radius: 50%;
       opacity: 0.1;
@@ -347,9 +362,10 @@
       100% { transform: translate(30%, 30%); }
     }
 
-    @media (max-width: 768px) {
-      .glass-card { padding: 2rem 1.5rem; }
-      .love-highlight { font-size: 2rem; }
+    /* Responsive Padding Fix for very small screens */
+    @media (max-width: 400px) {
+      .glass-card { padding: 1.5rem 1rem; width: calc(100% - 1rem); }
+      .q-text { font-size: 0.9rem; }
     }
   </style>
 </head>
@@ -359,10 +375,11 @@
     <img src="https://z-cdn-media.chatglm.cn/files/09b567ad-1aee-455e-a9ca-afd3177e0387.jpeg?auth_key=1873424614-9a5c6d809bea4643a5ef4f6a903ccc5b-0-a413175fbf7f5d5a0ed9e50cbe83a6fb" alt="Bouquet Background">
   </div>
 
-  <div class="floating-element glow-orb" style="top: 20%; left: 20%;"></div>
-  <div class="floating-element glow-orb" style="bottom: 10%; right: 10%; animation-delay: -5s;"></div>
+  <div class="glow-orb" style="top: 20%; left: 20%;"></div>
+  <div class="glow-orb" style="bottom: 10%; right: 10%; animation-delay: -5s;"></div>
 
   <div class="content-layer">
+    
     <!-- Hero Section -->
     <section class="glass-card hero-glass visible">
       <h1 class="hero-title">
@@ -374,6 +391,7 @@
 
     <!-- Questions Section -->
     <div class="question-container">
+      
       <div class="glass-card question-card" onclick="toggleAnswer(this)">
         <div class="question-bg"></div>
         <div class="q-text">Do you know what you mean to me?</div>
@@ -389,13 +407,38 @@
           "Because your presence is the light that chases away my darkness. Seeing you is the best part of my day."
         </div>
       </div>
+
+      <div class="glass-card question-card" onclick="toggleAnswer(this)">
+        <div class="question-bg"></div>
+        <div class="q-text">Why are you my peace?</div>
+        <div class="answer-text">
+          "In a chaotic world, your voice is the only calm I seek. When I am with you, all my worries disappear."
+        </div>
+      </div>
+
+      <div class="glass-card question-card" onclick="toggleAnswer(this)">
+        <div class="question-bg"></div>
+        <div class="q-text">Can I love you more each day?</div>
+        <div class="answer-text">
+          "My love for you has no limit. Every sunrise brings a new reason to adore you, and every sunset reminds me how lucky I am."
+        </div>
+      </div>
+
+      <div class="glass-card question-card" onclick="toggleAnswer(this)">
+        <div class="question-bg"></div>
+        <div class="q-text">What is my favorite place?</div>
+        <div class="answer-text">
+          "It is not a location. My favorite place is right beside you, holding your hand, wherever life takes us."
+        </div>
+      </div>
+
     </div>
 
     <!-- ENHANCED LOVE LETTER SECTION -->
     <section class="glass-card message-section-enhanced">
       <div class="decorative-quote">"</div>
       
-      <h2 style="font-size: 1.5rem; color: var(--gold); letter-spacing: 0.2em; margin-bottom: 2rem; font-weight: 400;">MY HEART'S CONFESSION</h2>
+      <h2 style="font-size: clamp(1rem, 3vw, 1.5rem); color: var(--gold); letter-spacing: 0.2em; margin-bottom: 2rem; font-weight: 400;">MY HEART'S CONFESSION</h2>
 
       <div class="enhanced-text-container">
         <p class="love-line">
@@ -415,11 +458,11 @@
       </div>
 
       <button class="romantic-btn" id="finalBtn">
-        Open My Final Secret
+        Open My Heart
       </button>
 
       <div class="hidden-reveal" id="finalReveal">
-        <h3 style="font-size: 1.5rem; color: var(--gold); font-family: 'Great Vibes', cursive; font-size: 2.5rem;">You are my Noor (Light).</h3>
+        <h3 style="color: var(--gold);">You are my Noor (Light).</h3>
         <p style="margin-top: 1rem; opacity: 0.8; font-style: italic;">
           And I promise to cherish you, today, tomorrow, and forever.
         </p>
@@ -437,25 +480,88 @@
       card.classList.toggle('active');
     }
 
-    // Final Button Reveal
+    // Button Logic & UPGRADED Heart Bomb
     const btn = document.getElementById('finalBtn');
     const reveal = document.getElementById('finalReveal');
     
-    btn.addEventListener('click', () => {
-      reveal.classList.toggle('visible');
-      btn.innerHTML = reveal.classList.contains('visible') ? 'Close My Heart' : 'Open My Final Secret';
-      
-      // Dramatic pulse effect on background
-      if(reveal.classList.contains('visible')) {
-        document.body.style.transition = 'filter 0.5s';
-        document.body.style.filter = 'brightness(1.2) saturate(1.2)';
-        setTimeout(() => {
-          document.body.style.filter = 'none';
-        }, 500);
-      }
-    });
+    if(btn && reveal) {
+      btn.addEventListener('click', (e) => {
+        const isOpening = !reveal.classList.contains('visible');
+        
+        reveal.classList.toggle('visible');
+        btn.innerHTML = isOpening ? 'Close My Heart' : 'Open My Heart';
+        
+        if(isOpening) {
+          // Dramatic pulse effect
+          document.body.style.transition = 'filter 0.5s';
+          document.body.style.filter = 'brightness(1.2) saturate(1.2)';
+          setTimeout(() => {
+            document.body.style.filter = 'none';
+          }, 500);
 
-    // Scroll Reveal
+          // TRIGGER THE MASSIVE BOMB
+          // We use center of screen for the explosion
+          const centerX = window.innerWidth / 2;
+          const centerY = window.innerHeight / 2;
+          createMassiveHeartBomb(centerX, centerY);
+        }
+      });
+    }
+
+    // --- MASSIVE Heart & Flower Bomb Function ---
+    function createMassiveHeartBomb(x, y) {
+      const container = document.body;
+      const particleCount = 150; // INCREASED COUNT
+      // Added more variety
+      const emojis = ['❤️', '🌹', '💖', '✨', '🌸', '💕', '💗', '💐', '🌺', '❤️‍🔥', '💝', '🥀', '✨'];
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle-bomb');
+        
+        // Random emoji
+        particle.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+        
+        // Random direction logic
+        // Angle: spread in all directions
+        const angle = Math.random() * Math.PI * 2;
+        
+        // Distance: Some go far, some stay close
+        const velocity = 150 + Math.random() * 350; // Increased distance
+        
+        // Calculate destination
+        const tx = Math.cos(angle) * velocity;
+        const ty = Math.sin(angle) * velocity;
+        
+        // Random rotation
+        const rot = (Math.random() - 0.5) * 1000; // Spinning effect
+
+        // Set initial position
+        particle.style.left = x + 'px';
+        particle.style.top = y + 'px';
+        
+        // Set CSS variables
+        particle.style.setProperty('--tx', tx + 'px');
+        particle.style.setProperty('--ty', ty + 'px');
+        particle.style.setProperty('--rot', rot + 'deg');
+        
+        // Random duration for variation
+        const duration = 1 + Math.random() * 1.5; 
+        particle.style.setProperty('--duration', duration + 's');
+        
+        // Random size
+        particle.style.fontSize = (15 + Math.random() * 30) + 'px';
+
+        container.appendChild(particle);
+
+        // Remove particle after animation
+        setTimeout(() => {
+          particle.remove();
+        }, duration * 1000);
+      }
+    }
+
+    // Scroll Reveal Observer
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
